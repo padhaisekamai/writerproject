@@ -32,7 +32,7 @@ public class MultipleWritersTest {
 
 
 	@Test
-	public void stupidRemoverOnLowerWithFileWriter() throws IOException {
+	public void testDuplicateStupidRemoverAndToLowerCase() throws IOException {
 		FileWriter fileWriter = new FileWriter("testFileRiter.txt");
 		ToLowerCase lowerCaseConverter = new ToLowerCase(fileWriter);
 		StupidRemover stupidRemover = new StupidRemover(lowerCaseConverter, "stupid");
@@ -45,17 +45,7 @@ public class MultipleWritersTest {
 	}
 
 	@Test
-	public void stupidRemoverOnUpper() throws IOException {
-		StringWriter stringWriter = new StringWriter();
-		DuplicateRemover duplicateRemover = new DuplicateRemover(stringWriter);
-		StupidRemover stupidRemover = new StupidRemover(duplicateRemover, "stupid");
-		ToUpperCase multiWriter = new ToUpperCase(stupidRemover);
-		multiWriter.write("nishant stupid kumar stupid kumar");
-		assertEquals("NISHANT S***** KUMAR", multiWriter.toString());
-	}
-
-	@Test
-	public void duplicateRemoverOnStupidRemover() throws IOException {
+	public void testStupidAndDuplicateRemover() throws IOException {
 		StringWriter stringWriter = new StringWriter();
 		DuplicateRemover duplicateWriter = new DuplicateRemover(stringWriter);
 		StupidRemover multiWriter = new StupidRemover(duplicateWriter, "stupid");
